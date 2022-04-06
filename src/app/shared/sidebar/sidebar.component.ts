@@ -7,10 +7,14 @@ import { GifsService } from 'src/app/gifs/services/gifs.service';
 })
 export class SidebarComponent {
 
-  constructor(private giftsService: GifsService) { }
-
   get historial() {
     return this.giftsService.historial
   }
 
+  constructor(private giftsService: GifsService) { }
+
+
+  buscar(termino:string){
+    this.giftsService.buscarGifs(termino);
+  }
 }
