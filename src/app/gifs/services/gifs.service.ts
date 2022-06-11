@@ -14,6 +14,7 @@ export class GifsService {
   private _historial  : string[]  = [];
 
   public resultado: Gif[] = []
+  public url: string = ''
 
   get historial() {
     return [...this._historial];
@@ -22,6 +23,7 @@ export class GifsService {
   constructor(private http: HttpClient) { 
     this._historial = JSON.parse(localStorage.getItem('historial')!) || []
     this.resultado = JSON.parse(localStorage.getItem('resultado')!) || []
+    this.url = JSON.parse(localStorage.getItem('url')!) || []
    }
 
   buscarGifs(query: string = '') {
@@ -36,15 +38,17 @@ export class GifsService {
 
     const params = new HttpParams()
           .set('api_key', this.apiKey)
-          .set('limit', '30')
-          .set('q', query)    
+          .set('limit', '100')
+          .set('q', query)
 
     // Equivalente al metodo fetch de js pero con mejor rendimiento por los "observables"
     this.http.get<SearchGIFResponse>(`${ this.servicioUrl }/search?`, { params })
       .subscribe((resp) => {
-        // console.log(resp.data);
+        console.log(resp.data)
+        
         this.resultado = resp.data
         localStorage.setItem('resultado', JSON.stringify(this.resultado))
+        localStorage.setItem('url', JSON.stringify(this.url))
       })
   }
 }

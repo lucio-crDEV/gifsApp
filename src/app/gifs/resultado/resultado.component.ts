@@ -7,11 +7,14 @@ import { GifsService } from '../services/gifs.service';
 })
 export class ResultadoComponent {
 
+  constructor(private giftService: GifsService) { }
+
+
   get resultados() {
     return this.giftService.resultado
   }
-
-
-  constructor(private giftService: GifsService) { }
+  get imgUrl() {
+    return this.giftService.url
+  }
 
 }
