@@ -1,21 +1,31 @@
 <div class="row">
-    <div *ngFor="let gif of resultados" 
-         class="col-md-4 col-sm-6 animate__animated animate__fadeIn animate__slow">
-            <div 
-                class="card">
-                <a href="https://i.giphy.com/media/{{gif.id}}/giphy.webp" target="_blank">
-                    <img [src]="gif.images.downsized_medium.url" 
-                         [alt]="gif.title"
-                         class="card-image-top"
-                         width="420"
-                         >
-                    </a>
-                <div 
-                    class="card-body">
-                    <p class="card-text">
-                        {{gif.title}}
-                    </p>
+    <div *ngFor="let gif of resultados"
+        class="col-md-4 col-sm-6 animate__animated animate__fadeIn animate__slow d-flex align-items-center justify-content-center">
+        <div class="gifs card my-4">
+            <a class="d-flex justify-content-center p-0" href="https://i.giphy.com/media/{{gif.id}}/giphy.webp"
+                target="_blank">
+                <img [src]="gif.images.downsized_medium.url" [alt]="gif.title"
+                    class="card-image-top img-fluid object-fit-cover p-0">
+            </a>
+            <div class="card-body text-center">
+                <p class="card-text title">
+                    {{gif.title}}
+                </p>
+                <div class="d-flex justify-content-evenly">
+                    <button type="button" class="btn btn-primary">
+                        <a class="boton" target="_blank"
+                            rel="noopener noreferrer" (click)="copyText(gif.id)">
+                            <span>{{texto}}</span>
+                        </a>
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        <a class="boton" href="https://i.giphy.com/media/{{gif.id}}/giphy.webp" target="_blank"
+                            rel="noopener noreferrer">
+                            <span>Abrir</span>
+                        </a>
+                    </button>
                 </div>
             </div>
+        </div>
     </div>
 </div>
